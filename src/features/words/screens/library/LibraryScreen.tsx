@@ -39,10 +39,9 @@ const LibraryScreen = () => {
   return (
     <ScreenContainer style={styles.screenContainer}>
       <Text style={styles.title}>LibraryScreen</Text>
-      <Card>
+      <Card style={styles.card}>
         <View style={styles.fContainer}>
           <FlatList
-            style={styles.flatListContainer}
             data={words}
             ListEmptyComponent={() => <NoData />}
             ListHeaderComponent={() => (
@@ -78,8 +77,7 @@ const styles = EStyleSheet.create({
   fContainer: {
     maxHeight: vhToPixelNumber(40),
   },
-  flatListContainer: {
-    borderColor: 'red',
-    borderWidth: 1,
+  card: {
+    margin: vwToPixelNumber(2),
   },
 });

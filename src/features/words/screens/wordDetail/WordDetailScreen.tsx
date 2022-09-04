@@ -7,6 +7,11 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import {EStyleSheetBuilder} from '~/constants';
 import {getWordDetail} from '../../services/wordService';
 import {IWord} from '../../models/words/IWord';
+import {
+  vhPixelAspectRatio,
+  vhToPixelNumber,
+  vwToPixelNumber,
+} from '~/constants/EStyleSheetBuilder';
 
 const WordDetailScreen = () => {
   const route = useRoute<WordDetailScreenRouteProp>();
@@ -23,11 +28,22 @@ const WordDetailScreen = () => {
   }, [route.params?.id]);
 
   return (
-    <View>
-      <Text>WordDetailScreen</Text>
-      <Text>id : {route.params?.id}</Text>
-      <Text>{word?.name}</Text>
-      <GoBackButton />
+    <View style={styles.container}>
+      <Text style={styles.title}>{word?.name}</Text>
+
+      <Text>cantidad letras: {word?.length}</Text>
+
+      <Text style={styles.subtitle}>rima</Text>
+      <Text>consonante: {word?.rhyme.consonant}</Text>
+      <Text>asonante: {word?.rhyme.asonant}</Text>
+
+      <Text style={styles.subtitle}>sílabas</Text>
+      <Text>{word?.syllables.value}</Text>
+      <Text>cantidad: {word?.syllables.count}</Text>
+
+      <Text style={styles.subtitle}>estructura vocal</Text>
+      <Text>{word?.vocalStruct}</Text>
+      <GoBackButton containerStyle={styles.goBack} />
     </View>
   );
 };
@@ -35,4 +51,22 @@ const WordDetailScreen = () => {
 export default WordDetailScreen;
 
 EStyleSheet.build(EStyleSheetBuilder);
-const styles = EStyleSheet.create({});
+const styles = EStyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: vwToPixelNumber(10),
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: vwToPixelNumber(6),
+    textAlign: 'center',
+  },
+  goBack: {
+    width: '50%',
+    marginTop: vhToPixelNumber(10),
+  },
+});

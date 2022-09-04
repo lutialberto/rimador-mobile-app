@@ -8,7 +8,17 @@ export async function getWords(filters?: IWordFilters): Promise<IWord[]> {
       (w: IWord) =>
         (!filters.length || w.name.length === filters.length) &&
         (!filters.prefix || w.name.startsWith(filters.prefix)) &&
-        (!filters.sufix || w.name.endsWith(filters.sufix)),
+        (!filters.sufix || w.name.endsWith(filters.sufix)) &&
+        (!filters.syllablesCount ||
+          w.syllables.count === filters.syllablesCount) &&
+        (!filters.vocalStruct ||
+          w.vocalStruct.includes(filters.vocalStruct.toLowerCase())) &&
+        (!filters.syllables ||
+          w.syllables.value.includes(filters.syllables.toLowerCase())) &&
+        (!filters.consonantRhyme ||
+          w.rhyme.consonant === filters.consonantRhyme.toLowerCase()) &&
+        (!filters.asonantRhyme ||
+          w.rhyme.asonant === filters.asonantRhyme.toLowerCase()),
     );
   }
   return words;

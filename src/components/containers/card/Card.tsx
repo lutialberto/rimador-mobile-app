@@ -5,8 +5,8 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import {EStyleSheetBuilder} from '~/constants';
 import {vwToPixelNumber} from '~/constants/EStyleSheetBuilder';
 
-const Card = ({children}: CardProps) => {
-  return <View style={styles.container}>{children}</View>;
+const Card = ({children, style}: CardProps) => {
+  return <View style={{...styles.container, ...style}}>{children}</View>;
 };
 
 export default Card;
@@ -15,7 +15,7 @@ EStyleSheet.build(EStyleSheetBuilder);
 const styles = EStyleSheet.create({
   container: {
     backgroundColor: '$colorGrayCircles',
-    padding: 10,
-    borderRadius: vwToPixelNumber(1),
+    padding: vwToPixelNumber(3),
+    borderRadius: vwToPixelNumber(3),
   },
 });

@@ -1,9 +1,121 @@
 [
-  {"id": 1, "name": "asd1"},
-  {"id": 2, "name": "asd2"},
-  {"id": 3, "name": "asd3"},
-  {"id": 4, "name": "asd4"},
-  {"id": 5, "name": "asd5"},
-  {"id": 6, "name": "asd6"},
-  {"id": 7, "name": "asd7"}
+  {
+    "id": 1,
+    "name": "palabra",
+    "length": 7,
+    "syllables": {
+      "count": 3,
+      "value": "pa-la-bra"
+    },
+    "strongSyllable": {
+      "position": 1
+    },
+    "rhyme": {
+      "consonant": "abra",
+      "asonant": "a-a"
+    },
+    "vocalStruct": "a-a-a"
+  },
+  {
+    "id": 2,
+    "name": "casa",
+    "length": 4,
+    "syllables": {
+      "count": 2,
+      "value": "ca-sa"
+    },
+    "strongSyllable": {
+      "position": 0
+    },
+    "rhyme": {
+      "consonant": "asa",
+      "asonant": "a-a"
+    },
+    "vocalStruct": "a-a"
+  },
+  {
+    "id": 3,
+    "name": "comida",
+    "length": 6,
+    "syllables": {
+      "count": 3,
+      "value": "co-mi-da"
+    },
+    "strongSyllable": {
+      "position": 1
+    },
+    "rhyme": {
+      "consonant": "ida",
+      "asonant": "i-a"
+    },
+    "vocalStruct": "o-i-a"
+  },
+  {
+    "id": 4,
+    "name": "persona",
+    "length": 7,
+    "syllables": {
+      "count": 3,
+      "value": "per-so-na"
+    },
+    "strongSyllable": {
+      "position": 1
+    },
+    "rhyme": {
+      "consonant": "ona",
+      "asonant": "o-a"
+    },
+    "vocalStruct": "e-o-a"
+  },
+  {
+    "id": 5,
+    "name": "terraterrestre",
+    "length": 14,
+    "syllables": {
+      "count": 5,
+      "value": "te-rra-te-rres-tre"
+    },
+    "strongSyllable": {
+      "position": 3
+    },
+    "rhyme": {
+      "consonant": "estre",
+      "asonant": "e-e"
+    },
+    "vocalStruct": "e-a-e-e-e"
+  },
+  {
+    "id": 6,
+    "name": "domingo",
+    "length": 7,
+    "syllables": {
+      "count": 3,
+      "value": "do-min-go"
+    },
+    "strongSyllable": {
+      "position": 1
+    },
+    "rhyme": {
+      "consonant": "ingo",
+      "asonant": "i-o"
+    },
+    "vocalStruct": "o-i-o"
+  },
+  {
+    "id": 7,
+    "name": "constitución",
+    "length": 12,
+    "syllables": {
+      "count": 4,
+      "value": "cons-ti-tu-ción"
+    },
+    "strongSyllable": {
+      "position": 3
+    },
+    "rhyme": {
+      "consonant": "ón",
+      "asonant": "o"
+    },
+    "vocalStruct": "o-i-u-ió"
+  }
 ]
