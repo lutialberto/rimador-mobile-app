@@ -2,6 +2,8 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import type {RouteProp} from '@react-navigation/native';
 
 export type RootStackParamList = {
+  Home: undefined;
+
   'Words/Library': undefined;
   'Words/Detail': {id: number};
 };

@@ -14,6 +14,7 @@ import WordBottomSheet from './components/wordBottomSheet/WordBottomSheet';
 import {IWordFilters} from '../../models/IWordFilters';
 import Card from '~/components/containers/card/Card';
 import {vhToPixelNumber, vwToPixelNumber} from '~/constants/EStyleSheetBuilder';
+import GenericHeader from '~/components/headers/genericHeader/GenericHeader';
 
 const LibraryScreen = () => {
   const [words, setWords] = useState<IWord[]>([]);
@@ -37,8 +38,8 @@ const LibraryScreen = () => {
   };
 
   return (
-    <ScreenContainer style={styles.screenContainer}>
-      <Text style={styles.title}>LibraryScreen</Text>
+    <ScreenContainer>
+      <GenericHeader title="LibraryScreen" />
       <Card style={styles.card}>
         <View style={styles.fContainer}>
           <FlatList
@@ -69,11 +70,6 @@ export default LibraryScreen;
 
 EStyleSheet.build(EStyleSheetBuilder);
 const styles = EStyleSheet.create({
-  screenContainer: {
-    padding: vwToPixelNumber(0.5),
-    width: '100%',
-  },
-  title: {},
   fContainer: {
     maxHeight: vhToPixelNumber(40),
   },
