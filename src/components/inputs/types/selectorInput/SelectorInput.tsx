@@ -4,9 +4,9 @@ import {SelectorInputProps} from './SelectorInputProps';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {Colors, EStyleSheetBuilder} from '~/constants';
 import {useController} from 'react-hook-form';
-import InputErrorMessage from '../inputErrorMessage/InputErrorMessage';
+import InputErrorMessage from '../../sharedComponents/inputErrorMessage/InputErrorMessage';
 import DropDownPicker from 'react-native-dropdown-picker';
-import InputLabel from '../inputLabel/InputLabel';
+import InputLabel from '../../sharedComponents/inputLabel/InputLabel';
 import {vhToPixelNumber, vwToPixelNumber} from '~/constants/EStyleSheetBuilder';
 
 const SelectorInput = ({

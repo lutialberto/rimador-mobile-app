@@ -4,7 +4,7 @@ import BottomSheet from '~/components/bottomSheets/bottomSheet/BottomSheet';
 import BorderButton from '~/components/buttons/borderButton/BorderButton';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {EStyleSheetBuilder} from '~/constants';
-import TextInputApp from '~/components/inputs/textInput/TextInputApp';
+import TextInputApp from '~/components/inputs/types/textInput/TextInputApp';
 import {useForm} from 'react-hook-form';
 import {WordBottomSheetProps} from './WordBottomSheetProps';
 import {FormValues} from '~/components/inputs/models/FormValues';

@@ -1,4 +1,4 @@
-import {BaseInputProps} from '../models/BaseInputProps';
+import {BaseInputProps} from '../../models/BaseInputProps';
 
 export interface TextInputAppProps extends BaseInputProps {
   onSubmitInput: () => void;

@@ -3,10 +3,10 @@ import React, {useEffect, useState} from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {EStyleSheetBuilder} from '~/constants';
 import {TextInputAppProps} from './TextInputAppProps';
-import InputErrorMessage from '../inputErrorMessage/InputErrorMessage';
+import InputErrorMessage from '../../sharedComponents/inputErrorMessage/InputErrorMessage';
 import IconButton from '~/components/buttons/IconButton/IconButton';
 import {useController} from 'react-hook-form';
-import InputLabel from '../inputLabel/InputLabel';
+import InputLabel from '../../sharedComponents/inputLabel/InputLabel';
 
 const TextInputApp = ({
   label,

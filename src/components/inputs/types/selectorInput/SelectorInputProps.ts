@@ -1,4 +1,4 @@
-import {BaseInputProps} from '../models/BaseInputProps';
+import {BaseInputProps} from '../../models/BaseInputProps';
 
 export interface SelectorInputProps extends BaseInputProps {
   options: SelectorInputOption[];
