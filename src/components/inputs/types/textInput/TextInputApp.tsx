@@ -84,7 +84,7 @@ const TextInputApp = ({
         <View style={styles.iconsContainer}>
           <IconButton
             onPress={clearInput}
-            visible={field.value.length > 0}
+            visible={field.value.toString().length > 0}
             svgIcon={<Text>clear</Text>}
           />
           {renderPasswordIcon()}
