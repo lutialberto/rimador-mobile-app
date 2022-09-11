@@ -24,7 +24,7 @@ const WordBottomSheet = ({
     resetField,
     reset,
     setFocus,
-  } = useForm({
+  } = useForm<FormValues>({
     defaultValues: {
       length: '',
       prefix: '',

@@ -1,15 +1,9 @@
-import {UseControllerProps} from 'react-hook-form';
-import {BaseProps} from '~/constants';
-import {FormValues} from '../models/FormValues';
+import {BaseInputProps} from '../models/BaseInputProps';
 
-export interface TextInputAppProps
-  extends BaseProps,
-    UseControllerProps<FormValues> {
-  label: string;
+export interface TextInputAppProps extends BaseInputProps {
   onSubmitInput: () => void;
   clearInput: () => void;
   lastInputForm?: boolean;
   type?: 'password' | 'email' | 'numeric';
   placeholder?: string;
-  errorMsg?: string;
 }

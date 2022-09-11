@@ -6,6 +6,7 @@ import {TextInputAppProps} from './TextInputAppProps';
 import InputErrorMessage from '../inputErrorMessage/InputErrorMessage';
 import IconButton from '~/components/buttons/IconButton/IconButton';
 import {useController} from 'react-hook-form';
+import InputLabel from '../inputLabel/InputLabel';
 
 const TextInputApp = ({
   label,
@@ -53,7 +54,7 @@ const TextInputApp = ({
 
   return (
     <View style={styles.container}>
-      <Text>{label}</Text>
+      <InputLabel label={label} />
       <View
         style={{
           ...styles.inputContainer,

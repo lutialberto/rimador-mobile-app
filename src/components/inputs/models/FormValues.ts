@@ -7,4 +7,5 @@ export interface FormValues {
   syllables: string;
   asonantRhyme: string;
   consonantRhyme: string;
+  selector: string;
 }
