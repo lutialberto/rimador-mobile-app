@@ -1,12 +1,13 @@
 import {Text, TextInput, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import {EStyleSheetBuilder} from '~/constants';
+import {Colors, EStyleSheetBuilder} from '~/constants';
 import {TextInputAppProps} from './TextInputAppProps';
 import InputErrorMessage from '../../sharedComponents/inputErrorMessage/InputErrorMessage';
 import IconButton from '~/components/buttons/IconButton/IconButton';
 import {useController} from 'react-hook-form';
 import InputLabel from '../../sharedComponents/inputLabel/InputLabel';
+import ClearIcon from './assets/inputClear.svg';
 
 const TextInputApp = ({
   label,
@@ -85,7 +86,7 @@ const TextInputApp = ({
           <IconButton
             onPress={clearInput}
             visible={field.value.toString().length > 0}
-            svgIcon={<Text>clear</Text>}
+            svgIcon={<ClearIcon fill={Colors.gray} />}
           />
           {renderPasswordIcon()}
         </View>
