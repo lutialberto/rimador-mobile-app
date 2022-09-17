@@ -3,7 +3,8 @@ import React from 'react';
 import {CopyButtonProps} from './CopyButtonProps';
 import Clipboard from '@react-native-clipboard/clipboard';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import {EStyleSheetBuilder} from '~/constants';
+import {Colors, EStyleSheetBuilder} from '~/constants';
+import CopyIcon from './assets/copy.svg';
 
 const CopyButton = ({textToCopy, children}: CopyButtonProps) => {
   const copyToClipboard = () => {
@@ -13,7 +14,7 @@ const CopyButton = ({textToCopy, children}: CopyButtonProps) => {
   return (
     <TouchableOpacity style={styles.container} onPress={copyToClipboard}>
       {children}
-      <Text style={styles.icon}>copiar</Text>
+      <CopyIcon fill={Colors.gray} />
     </TouchableOpacity>
   );
 };
