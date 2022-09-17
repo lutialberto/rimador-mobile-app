@@ -1,4 +1,4 @@
-import {Text, TextInput, View} from 'react-native';
+import {TextInput, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {Colors, EStyleSheetBuilder} from '~/constants';
@@ -8,6 +8,8 @@ import IconButton from '~/components/buttons/IconButton/IconButton';
 import {useController} from 'react-hook-form';
 import InputLabel from '../../sharedComponents/inputLabel/InputLabel';
 import ClearIcon from './assets/inputClear.svg';
+import ViewOn from './assets/viewPasswordOn.svg';
+import ViewOff from './assets/viewPasswordOff.svg';
 
 const TextInputApp = ({
   label,
@@ -49,7 +51,13 @@ const TextInputApp = ({
     type === 'password' && (
       <IconButton
         onPress={() => setPasswordHidden((prev: boolean) => !prev)}
-        svgIcon={passwordHidden ? <Text>ViewOn</Text> : <Text>ViewOff</Text>}
+        svgIcon={
+          passwordHidden ? (
+            <ViewOn fill={Colors.gray} />
+          ) : (
+            <ViewOff fill={Colors.gray} />
+          )
+        }
       />
     );
 

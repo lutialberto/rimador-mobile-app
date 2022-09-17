@@ -1,20 +1,35 @@
-import {StyleSheet} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {RootScreenNavigationType} from '~/navigators/routes/RootStack';
-import Button from '../button/Button';
 import {GoBackButtonProps} from './GoBackButtonProps';
+import IconButton from '../IconButton/IconButton';
+import BackIcon from './assets/back.svg';
+import {Colors, EStyleSheetBuilder} from '~/constants';
+import {Text, View} from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-const GoBackButton = ({label = 'Atras', containerStyle}: GoBackButtonProps) => {
+const GoBackButton = ({label = 'Atrás'}: GoBackButtonProps) => {
   const navigation = useNavigation<RootScreenNavigationType>();
 
   const onPress = () => (navigation.canGoBack() ? navigation.goBack() : {});
 
   return (
-    <Button label={label} onPress={onPress} containerStyle={containerStyle} />
+    <View style={styles.container}>
+      <IconButton
+        svgIcon={<BackIcon fill={Colors.primary} />}
+        onPress={onPress}
+      />
+      {label && <Text>{label}</Text>}
+    </View>
   );
 };
 
 export default GoBackButton;
 
-const styles = StyleSheet.create({});
+EStyleSheet.build(EStyleSheetBuilder);
+const styles = EStyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});

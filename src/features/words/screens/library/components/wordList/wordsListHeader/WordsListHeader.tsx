@@ -2,8 +2,8 @@ import {Text, View} from 'react-native';
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {EStyleSheetBuilder} from '~/constants';
-import IconButton from '~/components/buttons/IconButton/IconButton';
 import {WordListHeaderProps} from './WordsListHeaderProps';
+import FilterButton from '~/components/buttons/filterButton/FilterButton';
 
 const WordsListHeader = ({
   openFilterPanel,
@@ -13,10 +13,7 @@ const WordsListHeader = ({
     <View style={styles.container}>
       <View style={styles.row}>
         <Text>Palabras encontradas: {matchedWordsCount}</Text>
-        <IconButton
-          svgIcon={<Text>Abrir panel de filtros</Text>}
-          onPress={openFilterPanel}
-        />
+        <FilterButton onPress={openFilterPanel} />
       </View>
       {matchedWordsCount > 0 && (
         <View>

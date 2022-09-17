@@ -1,18 +1,17 @@
-import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
-import BorderButton from '~/components/buttons/borderButton/BorderButton';
+import {Modal, TouchableOpacity, View} from 'react-native';
+import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import {EStyleSheetBuilder} from '~/constants';
+import {Colors, EStyleSheetBuilder} from '~/constants';
 import {BottomSheetProps} from './BottomSheetProps';
 import IconButton from '~/components/buttons/IconButton/IconButton';
 import KeyboardHandler from '~/components/inputs/keyboardHandler/KeyboardHandler';
 import {vwToPixelNumber} from '~/constants/EStyleSheetBuilder';
+import CloseIcon from './assets/closeSheet.svg';
 
 const BottomSheet = ({
   visible,
   setVisible,
   children,
-  flex = 1,
   keyboardVerticalOffset = 0,
 }: BottomSheetProps) => {
   const onClose = () => setVisible(false);
@@ -29,7 +28,10 @@ const BottomSheet = ({
             style={styles.transparent}></TouchableOpacity>
           <View style={{...styles.modalView}}>
             <View style={styles.header}>
-              <IconButton svgIcon={<Text>close</Text>} onPress={onClose} />
+              <IconButton
+                svgIcon={<CloseIcon fill={Colors.gray} />}
+                onPress={onClose}
+              />
             </View>
             <View style={styles.body}>{children}</View>
           </View>
