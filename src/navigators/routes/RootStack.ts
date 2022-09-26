@@ -6,6 +6,7 @@ export type RootStackParamList = {
 
   'Words/Library': undefined;
   'Words/Detail': {id: number};
+  'SwipeLeftOrRight/Swipe': undefined;
 };
 
 // imported on components that need to use navigate method
