@@ -18,7 +18,7 @@ import RoundResultMessage from './components/roundResultMessage/RoundResultMessa
 const SWIPE_LIMIT = 1;
 
 const SwipeScreen = () => {
-  const [swipeState, setSwipeState] = useState(0);
+  const [swipeState, setSwipeState] = useState(SWIPE_LIMIT + 1);
   const [isLoading, setIsLoading] = useState(false);
   const [swipeEnabled, setSwipeEnabled] = useState(true);
   const [startCountDown, setStartCountDown] = useState(true);
@@ -63,12 +63,13 @@ const SwipeScreen = () => {
 
 
   const handleSwipe = (swipe: number) => {
-    console.log('dsdsadsa', swipeEnabled)
     if (swipeEnabled) {
       setSwipeState(prev => {
         if (swipe === 1 && prev === SWIPE_LIMIT) return prev;
+        if (swipe === 1 && prev <= SWIPE_LIMIT) return prev + 1;
         if (swipe === -1 && prev === -SWIPE_LIMIT) return prev;
-        return prev + swipe;
+        if (swipe === -1 && prev >= -SWIPE_LIMIT) return prev - 1;
+        return prev > SWIPE_LIMIT ? swipe : prev + swipe;
       })
     }
   }
@@ -144,7 +145,7 @@ const SwipeScreen = () => {
           />
           <PlayerList swipeState={swipeState} />
           <RoundResultMessage
-            answeredCorrectly={counter.failedPreviousRound}
+            answeredCorrectly={!counter.failedPreviousRound}
             score={counter.value}
             visible={showSwipeOptionValues}
           />
