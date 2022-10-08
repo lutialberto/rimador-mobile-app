@@ -1,25 +1,20 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 type REFRESH_MODES = 'keepFirst' | 'keepSecond' | 'keepNone';
 
 export const useListSelector = <T>() => {
   const [listLoaded, setListLoaded] = useState<T[]>([]);
   const [selectedItemsIndex, setSelectedItemsIndex] = useState<number[]>([]);
-  const [selectedMode, setSelectedMode] = useState<REFRESH_MODES>('keepFirst');
-  const [isNextRefreshPosible, setIsNextRefreshPosible] = useState(true);
 
-  useEffect(() => {
+  const isNextRefreshPosible = (mode: REFRESH_MODES) => {
     const maxcurrentIndex = getMaxSelectedIndex();
 
     const minimunItemsNeededForNextRefresh =
-      selectedMode === 'keepFirst' || selectedMode === 'keepSecond' ? 1 : 2;
+      mode === 'keepFirst' || mode === 'keepSecond' ? 1 : 2;
     const maxIndexOnNextRefresh =
       maxcurrentIndex + minimunItemsNeededForNextRefresh;
-    const isNextRefreshPosible1 =
-      listLoaded.length - 1 >= maxIndexOnNextRefresh;
-
-    setIsNextRefreshPosible(isNextRefreshPosible1);
-  }, [listLoaded, selectedMode, selectedItemsIndex]);
+    return listLoaded.length - 1 >= maxIndexOnNextRefresh;
+  };
 
   const getMaxSelectedIndex = () =>
     Math.max(selectedItemsIndex[0], selectedItemsIndex[1]);
@@ -35,15 +30,15 @@ export const useListSelector = <T>() => {
     setSelectedItemsIndex([0, 1]);
   };
 
-  const changeNewSelectedItems = () => {
-    if (!isNextRefreshPosible) return;
+  const changeNewSelectedItems = (mode: REFRESH_MODES): boolean => {
+    if (!isNextRefreshPosible(mode)) return false;
 
     const maxCurrentIndex = getMaxSelectedIndex();
 
     let firstItem = selectedItemsIndex[0];
     let secondItem = selectedItemsIndex[1];
 
-    switch (selectedMode) {
+    switch (mode) {
       case 'keepFirst':
         secondItem = maxCurrentIndex + 1;
         break;
@@ -57,13 +52,12 @@ export const useListSelector = <T>() => {
     }
 
     setSelectedItemsIndex([firstItem, secondItem]);
+    return true;
   };
 
   return {
     saveLoadedList,
     getSelectedItem,
-    setSelectedMode,
     changeNewSelectedItems,
-    isNextRefreshPosible,
   };
 };
