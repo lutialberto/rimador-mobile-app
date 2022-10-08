@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "imgUri": "https://2.bp.blogspot.com/-_W6nUMZKb48/UAq22675aTI/AAAAAAAAAR8/xIJkmfQx9Pw/s1600/Guns_N_Roses-Appetite_For_Destruction-Frontal.jpg",
+    "text": "Guns & Roses 1",
+    "value": 100
+  },
+  {
+    "id": "2",
+    "imgUri": "https://2.bp.blogspot.com/-_W6nUMZKb48/UAq22675aTI/AAAAAAAAAR8/xIJkmfQx9Pw/s1600/Guns_N_Roses-Appetite_For_Destruction-Frontal.jpg",
+    "text": "Guns & Roses 2",
+    "value": 100
+  },
+  {
+    "id": "3",
+    "imgUri": "https://2.bp.blogspot.com/-_W6nUMZKb48/UAq22675aTI/AAAAAAAAAR8/xIJkmfQx9Pw/s1600/Guns_N_Roses-Appetite_For_Destruction-Frontal.jpg",
+    "text": "Guns & Roses 3",
+    "value": 102
+  },
+  {
+    "id": "4",
+    "imgUri": "https://2.bp.blogspot.com/-_W6nUMZKb48/UAq22675aTI/AAAAAAAAAR8/xIJkmfQx9Pw/s1600/Guns_N_Roses-Appetite_For_Destruction-Frontal.jpg",
+    "text": "Guns & Roses 4",
+    "value": 100
+  },
+  {
+    "id": "5",
+    "imgUri": "https://2.bp.blogspot.com/-_W6nUMZKb48/UAq22675aTI/AAAAAAAAAR8/xIJkmfQx9Pw/s1600/Guns_N_Roses-Appetite_For_Destruction-Frontal.jpg",
+    "text": "Guns & Roses 5",
+    "value": 103
+  },
+  {
+    "id": "6",
+    "imgUri": "https://2.bp.blogspot.com/-_W6nUMZKb48/UAq22675aTI/AAAAAAAAAR8/xIJkmfQx9Pw/s1600/Guns_N_Roses-Appetite_For_Destruction-Frontal.jpg",
+    "text": "Guns & Roses 6",
+    "value": 102
+  }
+]
