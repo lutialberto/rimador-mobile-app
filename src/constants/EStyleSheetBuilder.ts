@@ -28,6 +28,7 @@ export default {
   $colorRed: Colors.red,
   $colorWhite: Colors.white,
   $colorYellow: Colors.yellow,
+  $colorGreen: Colors.green,
   $colorTransparent: Colors.transparent,
 
   $fontFamilyThin: 100,

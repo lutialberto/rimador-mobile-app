@@ -28,10 +28,7 @@ const HomeScreen = () => {
         <Button
           label="Izquierda o derecha!"
           containerStyle={styles.button}
-          onPress={() => {
-            console.log('dsadsasdsadsa')
-            navigation.navigate('SwipeLeftOrRight/Swipe')
-          }}
+          onPress={() => navigation.navigate('SwipeLeftOrRight/Swipe')}
         />
       </View>
     </ScreenContainer>
