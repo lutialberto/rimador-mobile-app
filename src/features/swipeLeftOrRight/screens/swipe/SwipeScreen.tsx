@@ -11,9 +11,9 @@ import CountDownButton from '~/components/buttons/countDownButton/CountDownButto
 import { getSwipeOptionsData } from './services/swipeService'
 import { handleCustomError } from '~/utils/ErrorHandler'
 import { SwipeOptionResponse } from './models/SwipeOption'
-import { Text } from 'react-native-svg'
 import { useListSelector } from './hooks/useListSelector'
-import { Alert } from 'react-native'
+import { Alert, Text, View } from 'react-native'
+import RoundResultMessage from './components/roundResultMessage/RoundResultMessage'
 
 const SWIPE_LIMIT = 1;
 
@@ -23,7 +23,12 @@ const SwipeScreen = () => {
   const [swipeEnabled, setSwipeEnabled] = useState(true);
   const [startCountDown, setStartCountDown] = useState(true);
   const [showSwipeOptionValues, setShowSwipeOptionValues] = useState(false);
-  const [counter, setCounter] = useState(0);
+
+  const [counter, setCounter] = useState({
+    value: 0,
+    resetedCounter: true,
+    failedPreviousRound: false
+  });
 
   const {
     changeNewSelectedItems,
@@ -58,6 +63,7 @@ const SwipeScreen = () => {
 
 
   const handleSwipe = (swipe: number) => {
+    console.log('dsdsadsa', swipeEnabled)
     if (swipeEnabled) {
       setSwipeState(prev => {
         if (swipe === 1 && prev === SWIPE_LIMIT) return prev;
@@ -67,34 +73,41 @@ const SwipeScreen = () => {
     }
   }
 
-  const handleCountDownPress = () => {
+  const lockSelectedAnswer = () => {
+    const firstValue = getSelectedItem('first').value;
+    const secondValue = getSelectedItem('second').value;
+    let answeredCorrectly = getRoundResult(firstValue, secondValue, swipeState);
+
+    const newCounter = answeredCorrectly ? counter.value + 1 : 0;
+    setCounter({
+      value: newCounter,
+      failedPreviousRound: !answeredCorrectly,
+      resetedCounter: newCounter === 0
+    });
+
     setSwipeEnabled(false);
     setStartCountDown(false);
     setShowSwipeOptionValues(true);
   };
 
+  const getRoundResult = (firstValue: number, secondValue: number, selectedResult: number) => {
+    return (
+      (firstValue > secondValue && selectedResult < 0) ||
+      (firstValue < secondValue && selectedResult > 0) ||
+      (firstValue === secondValue && selectedResult === 0)
+    );
+  }
+
   const startNewGuess = () => {
-    const firstValue = getSelectedItem('first').value;
-    const secondValue = getSelectedItem('second').value;
-
     let isNextRefreshPosible = true;
-    let answeredCorrectly = false;
-
-    if (firstValue > secondValue && swipeState === -1) {
-      isNextRefreshPosible = changeNewSelectedItems('keepFirst');
-      answeredCorrectly = true;
-    };
-    if (firstValue < secondValue && swipeState === 1) {
-      isNextRefreshPosible = changeNewSelectedItems('keepSecond')
-      answeredCorrectly = true;
-    };
-    if (firstValue === secondValue || !answeredCorrectly) {
-      isNextRefreshPosible = changeNewSelectedItems('keepNone');
-      answeredCorrectly = firstValue === secondValue && swipeState === 0;
+    if (!counter.failedPreviousRound) {
+      if (swipeState > 0) isNextRefreshPosible = changeNewSelectedItems('keepFirst');
+      if (swipeState < 0) isNextRefreshPosible = changeNewSelectedItems('keepSecond');
+      if (swipeState === 0) isNextRefreshPosible = changeNewSelectedItems('keepNone');
     }
-
-    const newCounter = answeredCorrectly ? counter + 1 : 0;
-    setCounter(newCounter);
+    else {
+      isNextRefreshPosible = changeNewSelectedItems('keepNone');
+    }
 
     if (isNextRefreshPosible) {
       setSwipeEnabled(true);
@@ -102,13 +115,13 @@ const SwipeScreen = () => {
       setShowSwipeOptionValues(false);
     }
     else {
-      Alert.alert('No hay más opciones cargadas')
+      Alert.alert('No hay más opciones cargadas');
     }
   }
 
   return (
     <ScreenContainer>
-      <GenericHeader title={`Swipe ${counter}`} />
+      <GenericHeader title={`Swipe ${counter.value}`} />
       {isLoading ? <Text>Loading...</Text> :
         <Swipeable
           onSwipeLeft={() => handleSwipe(-SWIPE_LIMIT)}
@@ -130,16 +143,21 @@ const SwipeScreen = () => {
             showValue={showSwipeOptionValues}
           />
           <PlayerList swipeState={swipeState} />
+          <RoundResultMessage
+            answeredCorrectly={counter.failedPreviousRound}
+            score={counter.value}
+            visible={showSwipeOptionValues}
+          />
         </Swipeable>
       }
       {showSwipeOptionValues ?
         <Button label='Siguiente ronda' onPress={startNewGuess} />
         : <CountDownButton
           label='Tiempo restante'
-          onPress={handleCountDownPress}
+          onPress={lockSelectedAnswer}
           seconds={45}
           startCountDown={startCountDown}
-          handleCountDownFinished={handleCountDownPress}
+          handleCountDownFinished={lockSelectedAnswer}
         />
       }
     </ScreenContainer>
