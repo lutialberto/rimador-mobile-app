@@ -8,11 +8,11 @@ import PlayerList from './components/playerList/PlayerList'
 import SwipeOption from './components/swipeOption/SwipeOption'
 import Button from '~/components/buttons/button/Button'
 import CountDownButton from '~/components/buttons/countDownButton/CountDownButton'
-import { getSwipeOptionsData } from './services/swipeService'
+import { getSwipeOptionsArtistsData } from './services/swipeService'
 import { handleCustomError } from '~/utils/ErrorHandler'
 import { SwipeOptionResponse } from './models/SwipeOption'
 import { useListSelector } from './hooks/useListSelector'
-import { Alert, Text, View } from 'react-native'
+import { Alert, Text } from 'react-native'
 import RoundResultMessage from './components/roundResultMessage/RoundResultMessage'
 
 const SWIPE_LIMIT = 1;
@@ -40,24 +40,21 @@ const SwipeScreen = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getSwipeOptionsData()
+    getSwipeOptionsArtistsData()
       .then(response => {
-        if (response.length > 1) {
-          saveLoadedList(response);
-        }
+        if (response.length > 1) saveLoadedList(response);
       })
       .catch(error => handleCustomError(error, 'No se pudieron cargar los opciones.'))
       .finally(() => setIsLoading(false));
+
   }, [])
 
   useEffect(() => {
     if (needsReload) {
-      getSwipeOptionsData()
+      getSwipeOptionsArtistsData()
         .then(response => {
-          if (response.length > 1) {
-            addMoreItems(response)
-          }
-        });
+          if (response.length > 1) addMoreItems(response)
+        })
     }
   }, [needsReload])
 
@@ -102,8 +99,8 @@ const SwipeScreen = () => {
   const startNewGuess = () => {
     let isNextRefreshPosible = true;
     if (!counter.failedPreviousRound) {
-      if (swipeState > 0) isNextRefreshPosible = changeNewSelectedItems('keepFirst');
-      if (swipeState < 0) isNextRefreshPosible = changeNewSelectedItems('keepSecond');
+      if (swipeState < 0) isNextRefreshPosible = changeNewSelectedItems('keepFirst');
+      if (swipeState > 0) isNextRefreshPosible = changeNewSelectedItems('keepSecond');
       if (swipeState === 0) isNextRefreshPosible = changeNewSelectedItems('keepNone');
     }
     else {
